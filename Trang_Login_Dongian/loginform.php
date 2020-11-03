@@ -6,6 +6,11 @@
 </head>
 
 <body>
+    <?php
+    if (!empty($error)) {
+        echo "<h3 style='color:red'>$error</h3>";
+    }
+    ?>
     <form action="login.php" method="POST">
         <input type="text" name="username" value="">
         <input type="password" name="password" value="">
