@@ -1,0 +1,49 @@
+<?php
+// Lấy dữ liệu từ form
+$product_description = $_POST['product_description'];
+$list_price = $_POST['list_price'];
+$discount_percent = $_POST['discount_percent'];
+
+// Tính toán chiết khấu
+$discount = $list_price * $discount_percent * .01;
+$discount_price = $list_price - $discount;
+
+// Áp dụng định dạng tiền tệ cho đô la và số tiền phần trăm
+$list_price_formatted = "$" . number_format($list_price, 2);
+$discount_percent_formatted = $discount_percent . "%";
+$discount_formatted = "$" . number_format($discount, 2);
+$discount_price_formatted = "$" . number_format($discount_price, 2);
+
+// thoát khỏi đầu vào chưa được định dạng
+$product_description_escaped = htmlspecialchars($product_description);
+?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Máy tính chiết khấu (giảm giá) sản phẩm</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+    <main>
+        <h1>Máy tính chiết khấu (giảm giá) sản phẩm</h1>
+
+        <label>Mô tả Sản phẩm::</label>
+        <span><?php echo $product_description_escaped; ?></span><br>
+
+        <label>Bảng giá::</label>
+        <span><?php echo $list_price_formatted; ?></span><br>
+
+        <label>Chiết khấu tiêu chuẩn:</label>
+        <span><?php echo $discount_percent_formatted; ?></span><br>
+
+        <label>Số tiền chiết khấu:</label>
+        <span><?php echo $discount_formatted; ?></span><br>
+
+        <label>Giảm giá:</label>
+        <span><?php echo $discount_price_formatted; ?></span><br>
+    </main>
+</body>
+
+</html>
